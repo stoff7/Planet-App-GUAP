@@ -1,0 +1,11 @@
+/Users/staslisicin/Desktop/Labs/ОП/PlanetLib/bin/Debug/net8.0/PlanetLib.deps.json
+/Users/staslisicin/Desktop/Labs/ОП/PlanetLib/bin/Debug/net8.0/PlanetLib.dll
+/Users/staslisicin/Desktop/Labs/ОП/PlanetLib/bin/Debug/net8.0/PlanetLib.pdb
+/Users/staslisicin/Desktop/Labs/ОП/PlanetLib/obj/Debug/net8.0/PlanetLib.GeneratedMSBuildEditorConfig.editorconfig
+/Users/staslisicin/Desktop/Labs/ОП/PlanetLib/obj/Debug/net8.0/PlanetLib.AssemblyInfoInputs.cache
+/Users/staslisicin/Desktop/Labs/ОП/PlanetLib/obj/Debug/net8.0/PlanetLib.AssemblyInfo.cs
+/Users/staslisicin/Desktop/Labs/ОП/PlanetLib/obj/Debug/net8.0/PlanetLib.csproj.CoreCompileInputs.cache
+/Users/staslisicin/Desktop/Labs/ОП/PlanetLib/obj/Debug/net8.0/PlanetLib.dll
+/Users/staslisicin/Desktop/Labs/ОП/PlanetLib/obj/Debug/net8.0/refint/PlanetLib.dll
+/Users/staslisicin/Desktop/Labs/ОП/PlanetLib/obj/Debug/net8.0/PlanetLib.pdb
+/Users/staslisicin/Desktop/Labs/ОП/PlanetLib/obj/Debug/net8.0/ref/PlanetLib.dll

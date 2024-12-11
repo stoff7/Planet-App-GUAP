@@ -1,0 +1,139 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlanetApp.CreatePlanet"
+             BackgroundImageSource="bg.jpg">
+
+    <ContentPage.Resources>
+        <Style x:Key="CartoonTextStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="ComicNeue-Bold" />
+            <Setter Property="FontSize" Value="65" /> <!-- Настройка размера шрифта -->
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="TextColor" Value="White" /> <!-- Белый цвет для контраста с фоном -->
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Левая колонка с созданием острова -->
+        <StackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+            <Grid x:Name="IslandContainer" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="500" HeightRequest="550">
+                <Image x:Name="IslandButton" Source="islandcreate.png"
+                       WidthRequest="500"
+                       HeightRequest="550"
+                       ScaleY="1.1"
+                       ScaleX="1.05"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnIslandButtonClicked" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Grid.GestureRecognizers>
+                    <PointerGestureRecognizer PointerEntered="OnIslandPointerEntered" PointerExited="OnIslandPointerExited" />
+                </Grid.GestureRecognizers>
+            </Grid>
+            <!-- Текстовая метка для кнопки создания острова -->
+            <Label x:Name="IslandLabel"
+                   Text="Создание островов" 
+                   Style="{StaticResource CartoonTextStyle}"
+                   Opacity="0" 
+                   Margin="0,20,0,0" />
+        </StackLayout>
+
+        <!-- Средняя колонка с созданием материка -->
+        <StackLayout Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center">
+            <Grid x:Name="MainlandContainer" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="500" HeightRequest="500">
+                <Image x:Name="MainlandButton" Source="mainlandcreate.png"
+                       WidthRequest="500"
+                       HeightRequest="500"
+                       HorizontalOptions="Center"
+                       ScaleX ="-1"
+                       VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnMainlandButtonClicked" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Grid.GestureRecognizers>
+                    <PointerGestureRecognizer PointerEntered="OnMainlandPointerEntered" PointerExited="OnMainlandPointerExited" />
+                </Grid.GestureRecognizers>
+            </Grid>
+            <!-- Текстовая метка для кнопки создания материка -->
+            <Label x:Name="MainlandLabel"
+                   Text="Создание материков" 
+                   Style="{StaticResource CartoonTextStyle}"
+                   Opacity="0" 
+                   Margin="0,20,0,0" />
+        </StackLayout>
+
+        <!-- Правая колонка с созданием океана -->
+        <StackLayout Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
+            <Grid x:Name="OceanContainer" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="500" HeightRequest="500">
+                <Image x:Name="OceanButton" Source="oceancreate.png"
+                       WidthRequest="500"
+                       HeightRequest="500"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnOceanButtonClicked" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Grid.GestureRecognizers>
+                    <PointerGestureRecognizer PointerEntered="OnOceanPointerEntered" PointerExited="OnOceanPointerExited" />
+                </Grid.GestureRecognizers>
+            </Grid>
+            <!-- Текстовая метка для кнопки создания океана -->
+            <Label x:Name="OceanLabel"
+                   Text="Создание океанов" 
+                   Style="{StaticResource CartoonTextStyle}"
+                   Opacity="0"
+                   Margin="0,20,0,0" />
+        </StackLayout>
+
+        <!-- Поле для ввода имени планеты -->
+        <StackLayout Grid.Column = "0" Padding="50" VerticalOptions="Start" Grid.ColumnSpan="0" >
+            <Label Text="Имя планеты:" 
+                   FontFamily="ComicNeue-Bold" 
+                   FontSize="80" 
+                   HorizontalOptions= "Center" />
+            <Entry x:Name="PlanetNameEntry"
+                   HorizontalOptions="Center"
+                   Placeholder ="Название Планеты"
+                   FontSize ="45"
+                   WidthRequest="600"
+                   BackgroundColor ="#D23A003A"
+                   Margin="0,10,0,0"/>
+        </StackLayout>
+
+
+        <StackLayout Grid.Column = "2" Padding="50" VerticalOptions="Start" Grid.ColumnSpan="0">
+            <Label Text="Cпутники:"
+                   FontFamily="ComicNeue-Bold"
+                   FontSize="80"
+                   HorizontalOptions="Center"/>
+            <Entry x:Name="SatelliteCountEntry"
+                   Placeholder ="Количество Спутников"
+                   HorizontalOptions="Center"
+                   WidthRequest="600"
+                   FontSize ="45"
+                   Keyboard="Numeric"
+                   BackgroundColor ="#D23A003A"
+                   Margin="0,10,0,0"/>
+        </StackLayout>
+
+        <!-- Центрированная кнопка сохранения -->
+        <StackLayout Grid.ColumnSpan="3" HorizontalOptions="Center" VerticalOptions="End" Padding="10" Margin ="0,50">
+            <Button Text="Сохранить" 
+                    HorizontalOptions="Center" 
+                    Clicked="OnSaveButtonClicked" 
+                    TextColor ="White"
+                    BackgroundColor ="#AE857AFF"
+                    Scale ="1.5"/>
+        </StackLayout>
+    </Grid>
+    
+</ContentPage>

@@ -1,0 +1,73 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlanetApp.MainPage"
+             Title="Главная страница"
+             BackgroundImageSource="bg.jpg"> <!-- Устанавливаем фон -->
+
+    <ContentPage.Resources>
+        <Style x:Key="CartoonTextStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="ComicNeue-Bold" />
+            <Setter Property="FontSize" Value="80" /> <!-- Увеличенный шрифт -->
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="TextColor" Value="White" /> <!-- Белый цвет для контраста с фоном -->
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid ColumnDefinitions="*,*">
+        <!-- Левая часть с изображением и текстом для перехода на страницу создания планет -->
+        <StackLayout Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center">
+            <!-- Контейнер для изображения и текста -->
+            <Grid x:Name="CreateContainer" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="500" HeightRequest="500">
+                <!-- ImageButton для создания планеты -->
+                <ImageButton x:Name="CreateButton"
+                             Source="createplanet.png"
+                             WidthRequest="750"
+                             HeightRequest="750"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                             BackgroundColor="Transparent"
+                             Clicked="OnCreatePlanetClicked"> <!-- Добавляем обработчик нажатия -->
+                </ImageButton>
+                <!-- Обработчики для контейнера -->
+                <Grid.GestureRecognizers>
+                    <PointerGestureRecognizer PointerEntered="OnPointerEntered" PointerExited="OnPointerExited" />
+                </Grid.GestureRecognizers>
+            </Grid>
+
+            <!-- Текст ниже кнопки -->
+            <Label x:Name="CreateLabel"
+                   Text="Создание планеты" 
+                   Style="{StaticResource CartoonTextStyle}"
+                   Opacity="0" 
+                   Margin="0,50,0,0" /> <!-- Поднимаем текст ближе к кнопке -->
+        </StackLayout>
+
+        <!-- Правая часть с изображением и текстом для перехода на страницу коллекции планет -->
+        <StackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+            <!-- Контейнер для изображения и текста -->
+            <Grid x:Name="CollectionContainer" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="500" HeightRequest="500">
+                <!-- ImageButton для коллекции планет -->
+                <ImageButton x:Name="CollectionButton"
+                             Source="view_planet.png"
+                             WidthRequest="750"
+                             HeightRequest="750"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                             BackgroundColor="Transparent"
+                             Clicked="OnViewPlanetsClicked"> <!-- Добавляем обработчик нажатия -->
+                </ImageButton>
+                <!-- Обработчики для контейнера -->
+                <Grid.GestureRecognizers>
+                    <PointerGestureRecognizer PointerEntered="OnCollectionPointerEntered" PointerExited="OnCollectionPointerExited" />
+                </Grid.GestureRecognizers>
+            </Grid>
+
+            <!-- Текст ниже кнопки -->
+            <Label x:Name="CollectionLabel"
+                   Text="Каталог планет" 
+                   Style="{StaticResource CartoonTextStyle}"
+                   Opacity="0" 
+                   Margin="0,50,0,0" /> <!-- Поднимаем текст ближе к кнопке -->
+        </StackLayout>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,83 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net8.0-maccatalyst
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = PlanetApp
+build_property.ProjectDir = /Users/staslisicin/Desktop/Labs/ОП/PlanetApp/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+
+[/Users/staslisicin/Desktop/Labs/ОП/PlanetApp/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = PlanetApp.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[/Users/staslisicin/Desktop/Labs/ОП/PlanetApp/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = PlanetApp.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[/Users/staslisicin/Desktop/Labs/ОП/PlanetApp/CreatePlanet.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = PlanetApp.CreatePlanet.xaml
+build_metadata.AdditionalFiles.TargetPath = CreatePlanet.xaml
+build_metadata.AdditionalFiles.RelativePath = CreatePlanet.xaml
+
+[/Users/staslisicin/Desktop/Labs/ОП/PlanetApp/EditPlanet.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = PlanetApp.EditPlanet.xaml
+build_metadata.AdditionalFiles.TargetPath = EditPlanet.xaml
+build_metadata.AdditionalFiles.RelativePath = EditPlanet.xaml
+
+[/Users/staslisicin/Desktop/Labs/ОП/PlanetApp/IslandCreatePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = PlanetApp.IslandCreatePage.xaml
+build_metadata.AdditionalFiles.TargetPath = IslandCreatePage.xaml
+build_metadata.AdditionalFiles.RelativePath = IslandCreatePage.xaml
+
+[/Users/staslisicin/Desktop/Labs/ОП/PlanetApp/MainLandCreatePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = PlanetApp.MainLandCreatePage.xaml
+build_metadata.AdditionalFiles.TargetPath = MainLandCreatePage.xaml
+build_metadata.AdditionalFiles.RelativePath = MainLandCreatePage.xaml
+
+[/Users/staslisicin/Desktop/Labs/ОП/PlanetApp/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = PlanetApp.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+
+[/Users/staslisicin/Desktop/Labs/ОП/PlanetApp/OceanCreatePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = PlanetApp.OceanCreatePage.xaml
+build_metadata.AdditionalFiles.TargetPath = OceanCreatePage.xaml
+build_metadata.AdditionalFiles.RelativePath = OceanCreatePage.xaml
+
+[/Users/staslisicin/Desktop/Labs/ОП/PlanetApp/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = PlanetApp.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Colors.xaml
+
+[/Users/staslisicin/Desktop/Labs/ОП/PlanetApp/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = PlanetApp.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Styles.xaml
+
+[/Users/staslisicin/Desktop/Labs/ОП/PlanetApp/ViewPlanet.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = PlanetApp.ViewPlanet.xaml
+build_metadata.AdditionalFiles.TargetPath = ViewPlanet.xaml
+build_metadata.AdditionalFiles.RelativePath = ViewPlanet.xaml

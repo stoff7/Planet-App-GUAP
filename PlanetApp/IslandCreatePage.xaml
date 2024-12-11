@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlanetApp.IslandCreatePage"
+             BackgroundImageSource="bg.jpg"
+             Title="Создание острова">
+
+    <Grid Padding="20">
+        <!-- Определение строк и столбцов -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Название острова по центру сверху -->
+        <Label Grid.Row="0" Grid.ColumnSpan="2" 
+               Text="Название острова" 
+               FontSize="70" 
+               HorizontalOptions="Center" 
+               VerticalOptions="Center" />
+        <Entry x:Name="IslandNameEntry" Placeholder="Введите название" Grid.Row="1" Grid.ColumnSpan="3" 
+               HorizontalOptions="Center" 
+               VerticalOptions="Start"
+               FontSize="60"
+               Margin="0,30" />
+
+        <!-- Поля ввода (левая половина - площадь, правая - температура) -->
+        <VerticalStackLayout Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" Margin="150,300">
+            <Label Text="Площадь (кв. км)" FontSize="50" />
+            <Entry x:Name="IslandAreaEntry" Placeholder="Введите площадь" Keyboard="Numeric" FontSize="50" />
+        </VerticalStackLayout>
+        <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Start" Margin="0,300">
+            <Label Text="Средняя температура (°C)" FontSize="50" />
+            <Entry x:Name="IslandTempEntry" Placeholder="Введите среднюю температуру" Keyboard="Numeric" FontSize="50" />
+        </VerticalStackLayout>
+
+        <!-- Кнопка с изображением внизу по центру -->
+        <ImageButton Grid.Row="1" Grid.ColumnSpan="2" Margin="0,150"
+                     Source="add.png"
+                     HeightRequest="300"
+                     WidthRequest="300"
+                     HorizontalOptions="Center"
+                     VerticalOptions="End"
+                     Clicked="OnCreateIslandClicked" />
+    </Grid>
+</ContentPage>

@@ -1,0 +1,11 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"command": "dotnet run --project /Users/staslisicin/Desktop/Labs/ОП/PlanetApp/PlanetApp.csproj --framework net8.0-maccatalyst",
+			"problemMatcher": [],
+			"label": "maui: Build"
+		}
+	]
+}

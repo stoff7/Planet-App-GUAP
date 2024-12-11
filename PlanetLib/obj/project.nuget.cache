@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "0YAsFVsPqD8=",
+  "success": true,
+  "projectFilePath": "/Users/staslisicin/Desktop/Labs/ОП/PlanetLib/PlanetLib.csproj",
+  "expectedPackageFiles": [
+    "/Users/staslisicin/.nuget/packages/microsoft.net.illink.tasks/8.0.8/microsoft.net.illink.tasks.8.0.8.nupkg.sha512"
+  ],
+  "logs": []
+}

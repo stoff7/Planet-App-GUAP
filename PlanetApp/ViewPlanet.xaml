@@ -1,0 +1,64 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlanetApp.ViewPlanet"
+             Title="Планеты">
+
+    <AbsoluteLayout BackgroundColor="#1C1C1C">
+
+       <AbsoluteLayout x:Name="AnimationLayer"
+                        AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1" />
+
+        <!-- Фоновое изображение -->
+        <Image Source="bg.jpg"
+               Aspect="AspectFill"
+               AbsoluteLayout.LayoutFlags="All"
+               AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+               Opacity="0.75" />
+
+
+        <!-- Основная область с изображением и стрелками -->
+       <Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+      RowDefinitions="Auto, *, Auto"
+      ColumnDefinitions="Auto, *, Auto">
+
+    <!-- Строка для поиска и сортировки -->
+    <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="3" Margin="10,25,10,0">
+        <!-- Поле поиска -->
+        <Entry x:Name="SearchEntry" Placeholder="Поиск..." TextChanged="OnSearchTextChanged"
+               FontSize="60"
+               HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+        <!-- Кнопка сортировки -->
+        <ImageButton x:Name="SortButton" Source="name.png" Clicked="OnSortButtonClicked"
+                     WidthRequest="130" HeightRequest="130" HorizontalOptions="End" VerticalOptions="Center" />
+    </StackLayout>
+
+    <!-- Левая стрелка -->
+    <ImageButton Source="left.png" Grid.Row="1" Grid.Column="0"
+                 Clicked="OnLeftArrowClicked"
+                 WidthRequest="500" HeightRequest="500"
+                 HorizontalOptions="Center" VerticalOptions="Center" />
+
+    <!-- Изображение планеты -->
+    <StackLayout Grid.Row="1" Grid.Column="1"
+                 VerticalOptions="Center" HorizontalOptions="Center">
+        <ImageButton x:Name="PlanetImage" Aspect="AspectFit" Clicked="GoToEditPlanet"
+                     WidthRequest="800" HeightRequest="800" />
+        <Label x:Name="PlanetName" TextColor="#FFFFFF" FontSize="50"
+               HorizontalOptions="Center" Margin="0,10,0,0" />
+               <!-- Кнопка удаления -->
+       <ImageButton x:Name = "DeleteButton" Source ="delete.png" Aspect ="AspectFill" Clicked ="DeletePlanet"
+              WidthRequest ="70" HeightRequest ="70" Margin ="0,50" />
+    </StackLayout>
+
+    <!-- Правая стрелка -->
+    <ImageButton Source="right.png" Grid.Row="1" Grid.Column="2"
+                 Clicked="OnRightArrowClicked"
+                 WidthRequest="500" HeightRequest="500"
+                 HorizontalOptions="Center" VerticalOptions="Center" />
+
+</Grid>
+
+    </AbsoluteLayout>
+    
+</ContentPage>
