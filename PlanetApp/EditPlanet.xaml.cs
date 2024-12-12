@@ -240,7 +240,7 @@ namespace PlanetApp
             if (collectionView.SelectedItem is T selectedItem)
             {
                 collection.Remove(selectedItem);
-                DisplayAlert(collection.Count.ToString(),errorMessage, "OK");
+                DisplayAlert("Успех!","Часть была удалена!", "OK");
         
             // Обновляем ItemsSource
                 collectionView.ItemsSource = null;
@@ -248,7 +248,7 @@ namespace PlanetApp
             }
             else
             {
-                DisplayAlert("Ошибка", errorMessage, "OK");
+                DisplayAlert("Ошибка", "Не удалось удалить", "OK");
             }
         }
         private void OnAddSatelliteClicked(object sender, EventArgs e)

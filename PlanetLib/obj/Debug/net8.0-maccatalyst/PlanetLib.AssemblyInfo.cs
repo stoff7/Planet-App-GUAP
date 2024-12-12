@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PlanetLib")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e79e916c6fbfc7a425ec77e750ed8cfcc49dc50f")]
 [assembly: System.Reflection.AssemblyProductAttribute("PlanetLib")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PlanetLib")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -16,3 +16,4 @@
 /Users/staslisicin/Desktop/Labs/ОП/PlanetLib/obj/Debug/net8.0-maccatalyst/refint/PlanetLib.dll
 /Users/staslisicin/Desktop/Labs/ОП/PlanetLib/obj/Debug/net8.0-maccatalyst/PlanetLib.pdb
 /Users/staslisicin/Desktop/Labs/ОП/PlanetLib/obj/Debug/net8.0-maccatalyst/ref/PlanetLib.dll
+/Users/staslisicin/Desktop/Labs/ОП/PlanetLib/obj/Debug/net8.0-maccatalyst/PlanetLib.sourcelink.json
