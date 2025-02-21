@@ -40,18 +40,5 @@ namespace PlanetApp
             await CollectionLabel.FadeTo(0, 250, Easing.SpringOut); // Скрываем текст
         }
 
-        // Обработчик для нажатия на кнопку "Создание планеты"
-        private void OnCreatePlanetClicked(object sender, EventArgs e)
-        {
-            // Логика перехода на страницу создания планеты
-            Navigation.PushAsync(new CreatePlanet());
-        }
-
-        // Обработчик для нажатия на кнопку "Каталог планет"
-        private void OnViewPlanetsClicked(object sender, EventArgs e)
-        {
-            // Логика перехода на страницу просмотра планет
-            Navigation.PushAsync(new ViewPlanet());
-        }
     }
 }

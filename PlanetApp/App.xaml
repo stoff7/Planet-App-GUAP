@@ -2,6 +2,7 @@
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:PlanetApp"
+             xmlns:vm="clr-namespace:PlanetApp.ViewModels"
              x:Class="PlanetApp.App">
     <Application.Resources>
         <ResourceDictionary>

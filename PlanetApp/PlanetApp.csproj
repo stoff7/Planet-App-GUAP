@@ -36,6 +36,10 @@
     	<Page Include="../Resources/Styles/Colors.xaml" />
 		<Page Include="../Resources/Styles/Styles.xaml" />
 	</ItemGroup>
+	<ItemGroup>
+    	<Compile Include="ViewModels\MainPageViewModel.cs" />
+	</ItemGroup>	
+
 
 	<ItemGroup>
 		<!-- App Icon -->

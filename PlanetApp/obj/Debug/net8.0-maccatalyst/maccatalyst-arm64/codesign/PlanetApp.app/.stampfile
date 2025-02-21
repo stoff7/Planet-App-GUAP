@@ -1,1 +1,0 @@
--v --force --timestamp=none --sign - --entitlements /Users/staslisicin/Desktop/Labs/ОП/PlanetApp/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Entitlements.xcent /Users/staslisicin/Desktop/Labs/ОП/PlanetApp/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/PlanetApp.app

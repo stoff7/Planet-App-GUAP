@@ -1,5 +1,6 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:PlanetApp.ViewModels"
              x:Class="PlanetApp.MainPage"
              Title="Главная страница"
              BackgroundImageSource="bg.jpg"> <!-- Устанавливаем фон -->
@@ -13,6 +14,10 @@
         </Style>
     </ContentPage.Resources>
 
+    <ContentPage.BindingContext>
+        <vm:MainPageViewModel />
+    </ContentPage.BindingContext>
+    
     <Grid ColumnDefinitions="*,*">
         <!-- Левая часть с изображением и текстом для перехода на страницу создания планет -->
         <StackLayout Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center">
@@ -26,7 +31,7 @@
                              HorizontalOptions="Center"
                              VerticalOptions="Center"
                              BackgroundColor="Transparent"
-                             Clicked="OnCreatePlanetClicked"> <!-- Добавляем обработчик нажатия -->
+                             Command= "{Binding CreatePlanetCommand}">
                 </ImageButton>
                 <!-- Обработчики для контейнера -->
                 <Grid.GestureRecognizers>
@@ -54,7 +59,7 @@
                              HorizontalOptions="Center"
                              VerticalOptions="Center"
                              BackgroundColor="Transparent"
-                             Clicked="OnViewPlanetsClicked"> <!-- Добавляем обработчик нажатия -->
+                             Command = "{Binding ViewPlanetsCommand}">
                 </ImageButton>
                 <!-- Обработчики для контейнера -->
                 <Grid.GestureRecognizers>
