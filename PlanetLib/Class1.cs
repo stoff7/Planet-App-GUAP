@@ -7,9 +7,10 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 // Главный класс Planet
-public class Planet : IRandomDataGenerator
+public class Planet : IRandomDataGenerator, INotifyPropertyChanged
 {
     [JsonInclude]
     [JsonConverter(typeof(SatelliteArrayConverter))]
@@ -25,7 +26,25 @@ public class Planet : IRandomDataGenerator
     private static readonly int DefaultSize = 1; //Количество спутников по умолчанию
 
     public string Name { get; set; } 
-    public string ImagePath{ get; set;}
+    private string imagePath;
+    public string ImagePath
+    {
+        get => imagePath;
+        set
+        {
+            if (imagePath != value)
+            {
+                imagePath = value;
+                OnPropertyChanged(nameof(ImagePath));
+            }
+        }
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
     public List<Ocean> Oceans { get; set; }
     public List<Mainland> Mainlands { get; set; }
     public List<Island> Islands { get; set; }

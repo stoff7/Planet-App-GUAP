@@ -1,4 +1,5 @@
 {
-    "workbench.editor.enablePreview": true,
-    "CodeGPT.apiKey": "CodeGPT Plus Beta"
+  "workbench.editor.enablePreview": true,
+  "CodeGPT.apiKey": "CodeGPT Plus Beta",
+  "cSpell.words": ["reversedname", "reversednumber"]
 }

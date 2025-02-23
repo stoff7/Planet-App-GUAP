@@ -1,7 +1,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PlanetApp.ViewPlanet"
-             Title="Планеты">
+             Title="Планеты"
+             xmlns:vm="clr-namespace:PlanetApp.ViewModels">
+
+       <ContentPage.BindingContext>
+              <vm:ViewPlanetViewModel />
+       </ContentPage.BindingContext>
 
     <AbsoluteLayout BackgroundColor="#1C1C1C">
 
@@ -25,35 +30,35 @@
     <!-- Строка для поиска и сортировки -->
     <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="3" Margin="10,25,10,0">
         <!-- Поле поиска -->
-        <Entry x:Name="SearchEntry" Placeholder="Поиск..." TextChanged="OnSearchTextChanged"
+        <Entry x:Name="SearchEntry" Placeholder="Поиск..." Text="{Binding SearchQuery,Mode =TwoWay}"
                FontSize="60"
                HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
         <!-- Кнопка сортировки -->
-        <ImageButton x:Name="SortButton" Source="name.png" Clicked="OnSortButtonClicked"
+        <ImageButton x:Name="SortButton" Source="{Binding SortButtonSource}" Command ="{Binding SortCommand}"
                      WidthRequest="130" HeightRequest="130" HorizontalOptions="End" VerticalOptions="Center" />
     </StackLayout>
 
     <!-- Левая стрелка -->
     <ImageButton Source="left.png" Grid.Row="1" Grid.Column="0"
-                 Clicked="OnLeftArrowClicked"
+                 Command ="{Binding LeftArrowCommand}"
                  WidthRequest="500" HeightRequest="500"
                  HorizontalOptions="Center" VerticalOptions="Center" />
 
     <!-- Изображение планеты -->
     <StackLayout Grid.Row="1" Grid.Column="1"
                  VerticalOptions="Center" HorizontalOptions="Center">
-        <ImageButton x:Name="PlanetImage" Aspect="AspectFit" Clicked="GoToEditPlanet"
+        <ImageButton x:Name="PlanetImage" Aspect="AspectFit" Command="{Binding EditPlanetCommand}" Source ="{Binding CurrentPlanet.ImagePath}"
                      WidthRequest="800" HeightRequest="800" />
-        <Label x:Name="PlanetName" TextColor="#FFFFFF" FontSize="50"
+        <Label x:Name="PlanetName" Text = "{Binding CurrentPlanet.Name}" TextColor="#FFFFFF" FontSize="50"
                HorizontalOptions="Center" Margin="0,10,0,0" />
                <!-- Кнопка удаления -->
-       <ImageButton x:Name = "DeleteButton" Source ="delete.png" Aspect ="AspectFill" Clicked ="DeletePlanet"
+       <ImageButton x:Name = "DeleteButton" Source ="delete.png" Aspect ="AspectFill" Command ="{Binding DeletePlanetCommand}"
               WidthRequest ="70" HeightRequest ="70" Margin ="0,50" />
     </StackLayout>
 
     <!-- Правая стрелка -->
     <ImageButton Source="right.png" Grid.Row="1" Grid.Column="2"
-                 Clicked="OnRightArrowClicked"
+                 Command ="{Binding RightArrowCommand}"
                  WidthRequest="500" HeightRequest="500"
                  HorizontalOptions="Center" VerticalOptions="Center" />
 
