@@ -8,13 +8,21 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
+
+public static class CollectionExtensions
+{
+    public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> collection)
+    {
+        return new ObservableCollection<T>(collection);
+    }
+}
+
 
 // Главный класс Planet
 public class Planet : IRandomDataGenerator, INotifyPropertyChanged
 {
-    [JsonInclude]
-    [JsonConverter(typeof(SatelliteArrayConverter))]
-    public Satellite[] satellites;
+    public ObservableCollection<Satellite> Satellites { get; set; }
     public delegate void PlanetCreatedHandler(string message);
     public delegate void PlanetSavedHandler(bool success);
     public delegate void PlanetLoadedHandler(bool success);
@@ -22,10 +30,10 @@ public class Planet : IRandomDataGenerator, INotifyPropertyChanged
     public event EventHandler<string>? PlanetCreated;
     public static event EventHandler<bool>? PlanetsSaved;
     public static event EventHandler<bool>? PlanetsLoaded;
-    
+
     private static readonly int DefaultSize = 1; //Количество спутников по умолчанию
 
-    public string Name { get; set; } 
+    public string Name { get; set; }
     private string imagePath;
     public string ImagePath
     {
@@ -45,9 +53,9 @@ public class Planet : IRandomDataGenerator, INotifyPropertyChanged
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
-    public List<Ocean> Oceans { get; set; }
-    public List<Mainland> Mainlands { get; set; }
-    public List<Island> Islands { get; set; }
+    public ObservableCollection<Ocean> Oceans { get; set; }
+    public ObservableCollection<Mainland> Mainlands { get; set; }
+    public ObservableCollection<Island> Islands { get; set; }
     public override bool Equals(object obj)
     {
         if (obj is Planet otherPlanet)
@@ -64,26 +72,28 @@ public class Planet : IRandomDataGenerator, INotifyPropertyChanged
     public Planet() //случайное создание
     {
         Name = ((IRandomDataGenerator)this).GenerateRandomName(5);
-        Oceans = new List<Ocean>();
-        for (int i = 0;i < ((IRandomDataGenerator)this).GenerateRandomNumber(0,4); i++){
+        Oceans = new ObservableCollection<Ocean>();
+        for (int i = 0; i < ((IRandomDataGenerator)this).GenerateRandomNumber(0, 4); i++)
+        {
             Oceans.Add(new Ocean());
         }
-        Mainlands = new List<Mainland>();
-        for (int i = 0;i < ((IRandomDataGenerator)this).GenerateRandomNumber(0,4); i++){
+        Mainlands = new ObservableCollection<Mainland>();
+        for (int i = 0; i < ((IRandomDataGenerator)this).GenerateRandomNumber(0, 4); i++)
+        {
             Mainlands.Add(new Mainland());
         }
-        Islands = new List<Island>();
-        for (int i = 0;i < ((IRandomDataGenerator)this).GenerateRandomNumber(0,4); i++){
+        Islands = new ObservableCollection<Island>();
+        for (int i = 0; i < ((IRandomDataGenerator)this).GenerateRandomNumber(0, 4); i++)
+        {
             Islands.Add(new Island());
         }
-        int size = ((IRandomDataGenerator)this).GenerateRandomNumber(0,4);
-        satellites = new Satellite[size];
-        for (int i = 0; i < size; i++)
+        Satellites = new ObservableCollection<Satellite>();
+        for (int i = 0; i < ((IRandomDataGenerator)this).GenerateRandomNumber(0, 4); i++)
         {
-            satellites[i] = new Satellite();
+            Satellites.Add(new Satellite());
         }
         ImagePath = "p" + ((IRandomDataGenerator)this).GenerateRandomNumber(1, 11).ToString() + ".png";
-        PlanetCreated?.Invoke (this, $"Планета {Name} создана с океанами: {Oceans.Count}, материками: {Mainlands.Count}, островами: {Islands.Count}, спутниками: {satellites.Length}");
+        PlanetCreated?.Invoke(this, $"Планета {Name} создана с океанами: {Oceans.Count}, материками: {Mainlands.Count}, островами: {Islands.Count}, спутниками: {Satellites.Count}");
     }
 
     public Planet(string name, int number) //создание с определенным количеством спутников
@@ -92,70 +102,48 @@ public class Planet : IRandomDataGenerator, INotifyPropertyChanged
         {
             throw new ArgumentException("Number must be a positive integer.", nameof(number));
         }
-
-        Name = name;
-        Oceans = new List<Ocean>();
-        Mainlands = new List<Mainland>();
-        Islands = new List<Island>();
-        satellites = new Satellite[number];
+        if (name != "NoName")
+        {
+            Name = name;
+        }
+        Oceans = new ObservableCollection<Ocean>();
+        Mainlands = new ObservableCollection<Mainland>();
+        Islands = new ObservableCollection<Island>();
+        Satellites = new ObservableCollection<Satellite>();
         for (int i = 0; i < number; i++)
         {
-            satellites[i] = new Satellite();
+            Satellites.Add(new Satellite());
         }
         ImagePath = "p" + ((IRandomDataGenerator)this).GenerateRandomNumber(1, 11).ToString() + ".png";
-        PlanetCreated?.Invoke (this, $"Планета {Name} создана с океанами: {Oceans.Count}, материками: {Mainlands.Count}, островами: {Islands.Count}, спутниками: {satellites.Length}");
+        PlanetCreated?.Invoke(this, $"Планета {Name} создана с океанами: {Oceans.Count}, материками: {Mainlands.Count}, островами: {Islands.Count}, спутниками: {Satellites.Count}");
     }
     public Planet(string name) //создание только имени и спутника
     {
 
         Name = name;
-        Oceans = new List<Ocean>();
-        Mainlands = new List<Mainland>();
-        Islands = new List<Island>();
-        satellites = new Satellite[DefaultSize];
-        satellites[0] = new Satellite();
+        Oceans = new ObservableCollection<Ocean>();
+        Mainlands = new ObservableCollection<Mainland>();
+        Islands = new ObservableCollection<Island>();
+        Satellites = new ObservableCollection<Satellite>();
         ImagePath = "p" + ((IRandomDataGenerator)this).GenerateRandomNumber(1, 11).ToString() + ".png";
-        PlanetCreated?.Invoke (this, $"Планета {Name} создана с океанами: {Oceans.Count}, материками: {Mainlands.Count}, островами: {Islands.Count}, спутниками: {satellites.Length}");
+        PlanetCreated?.Invoke(this, $"Планета {Name} создана с океанами: {Oceans.Count}, материками: {Mainlands.Count}, островами: {Islands.Count}, спутниками: {Satellites.Count}");
     }
-    public Satellite this[int index]
-    {
-        get => index >= 0 && index < satellites.Length
-            ? satellites[index]
-            : throw new IndexOutOfRangeException("Invalid satellite index.");
-        set
-        {
-            if (index >= 0 && index < satellites.Length)
-                satellites[index] = value;
-            else
-                throw new IndexOutOfRangeException("Invalid satellite index.");
-        }
-    }
-
-
-    public Satellite? this[string name]
-    {
-        get
-        {
-            return satellites.FirstOrDefault(i => i.Name == name);
-        }
-    }
-
-    public static List<Planet> LoadPlanetsFromJson(string filePath)
+    public static ObservableCollection<Planet> LoadPlanetsFromJson(string filePath)
     {
         try
         {
             string jsonContent = File.ReadAllText(filePath);
             PlanetsLoaded?.Invoke(null, true);
-            return JsonSerializer.Deserialize<List<Planet>>(jsonContent) ?? new List<Planet>();
+            return JsonSerializer.Deserialize<ObservableCollection<Planet>>(jsonContent) ?? new ObservableCollection<Planet>();
         }
         catch (Exception ex)
         {
             Console.WriteLine("Ошибка загрузки данных: " + ex.Message);
-            return new List<Planet>(); // Возвращаем пустой список в случае ошибки
+            return new ObservableCollection<Planet>(); // Возвращаем пустой список в случае ошибки
         }
     }
 
-    public static void SavePlanetsToJson(List<Planet> planets, string _filePath)
+    public static void SavePlanetsToJson(ObservableCollection<Planet> planets, string _filePath)
     {
         try
         {
@@ -203,7 +191,7 @@ public class Ocean : PlanetPart, IRandomDataGenerator
 }
 
 // Класс Mainland (материк)
-public class Mainland : PlanetPart,IRandomDataGenerator 
+public class Mainland : PlanetPart, IRandomDataGenerator
 {
     public Mainland(string name, double area, double averageTemperature)
         : base(name, area, averageTemperature) { }
@@ -232,7 +220,7 @@ public class Island : PlanetPart, IRandomDataGenerator
 {
     public Island(string name, double area, double averageTemperature)
         : base(name, area, averageTemperature) { }
-    
+
     public Island()
         : base() { }
 
@@ -253,11 +241,25 @@ public class Island : PlanetPart, IRandomDataGenerator
 }
 
 // Абстрактный класс PlanetPart
-public abstract class PlanetPart : IRandomDataGenerator
+public abstract class PlanetPart : IRandomDataGenerator, INotifyPropertyChanged
 {
-    public string Name { get; set; }
+    private string _name;
+    public string Name
+    {
+        get => _name;
+        set
+        {
+            _name = value;
+            OnPropertyChanged(nameof(Name));
+        }
+    }
     public double Area { get; set; } // Площадь
     public double AverageTemperature { get; set; } // Средняя температура
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
 
     protected PlanetPart(string name, double area, double averageTemperature)
     {
@@ -269,8 +271,8 @@ public abstract class PlanetPart : IRandomDataGenerator
     protected PlanetPart()
     {
         Name = ((IRandomDataGenerator)this).GenerateRandomName(5);
-        Area = ((IRandomDataGenerator)this).GenerateRandomNumber(1000.0,100000.0);
-        AverageTemperature = ((IRandomDataGenerator)this).GenerateRandomNumber(-30.0,30.0);
+        Area = ((IRandomDataGenerator)this).GenerateRandomNumber(1000.0, 100000.0);
+        AverageTemperature = ((IRandomDataGenerator)this).GenerateRandomNumber(-30.0, 30.0);
 
     }
 
@@ -298,7 +300,7 @@ public class Satellite : IRandomDataGenerator
         Name = ((IRandomDataGenerator)this).GenerateRandomName(5);
         Mass = ((IRandomDataGenerator)this).GenerateRandomNumber(100, 5000);
     }
-    public Satellite(string name,double mass)
+    public Satellite(string name, double mass)
     {
         Name = name;
         Mass = mass;
@@ -324,27 +326,11 @@ public interface IRandomDataGenerator
     // Метод для генерации случайной массы
     public int GenerateRandomNumber(int min, int max)
     {
-        return random.Next(min, max+1);
+        return random.Next(min, max + 1);
     }
 
     public double GenerateRandomNumber(double min, double max)
     {
-        return random.Next((int)min, (int)max+1) + random.NextDouble();
-    }
-}
-
-
-public class SatelliteArrayConverter : JsonConverter<Satellite[]>
-{
-    public override Satellite[] Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-    {
-        // Чтение массива спутников из JSON
-        return JsonSerializer.Deserialize<Satellite[]>(ref reader, options);
-    }
-
-    public override void Write(Utf8JsonWriter writer, Satellite[] value, JsonSerializerOptions options)
-    {
-        // Запись массива спутников в JSON
-        JsonSerializer.Serialize(writer, value, options);
+        return random.Next((int)min, (int)max + 1) + random.NextDouble();
     }
 }

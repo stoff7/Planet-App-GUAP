@@ -1,11 +1,22 @@
 using PlanetLib;
+using System.Collections.Generic;
+using System.Linq;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace PlanetApp.ViewModels
 {
+    public static class CollectionExtensions
+    {
+        public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> collection)
+        {
+            return new ObservableCollection<T>(collection);
+        }
+    }
+
     public class ViewPlanetViewModel : BindableObject
     {
-        private List<Planet> _planets;
+        private ObservableCollection<Planet> _planets;
         private int _currentIndex;
         private int _sortState; // 0,1,2,3 – состояние сортировки
         private readonly string _filePath;
@@ -53,13 +64,13 @@ namespace PlanetApp.ViewModels
         public ICommand LeftArrowCommand { get; }
         public ICommand RightArrowCommand { get; }
         public ICommand SortCommand { get; }
-        public ICommand DeletePlanetCommand{ get; }
-        public ICommand EditPlanetCommand{ get; }
+        public ICommand DeletePlanetCommand { get; }
+        public ICommand EditPlanetCommand { get; }
 
         public ViewPlanetViewModel()
         {
             _filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "planets.json");
-            _planets = Planet.LoadPlanetsFromJson(_filePath) ?? new List<Planet>();
+            _planets = Planet.LoadPlanetsFromJson(_filePath) ?? new ObservableCollection<Planet>();
             _currentIndex = 0;
             _sortState = 0;
             UpdateCurrentPlanet();
@@ -107,7 +118,7 @@ namespace PlanetApp.ViewModels
 
         public void PerformSearch(string query)
         {
-            var allPlanets = Planet.LoadPlanetsFromJson(_filePath) ?? new List<Planet>();
+            var allPlanets = Planet.LoadPlanetsFromJson(_filePath) ?? new ObservableCollection<Planet>();
 
             _planets = string.IsNullOrWhiteSpace(query)
                 ? allPlanets
@@ -116,8 +127,8 @@ namespace PlanetApp.ViewModels
                         p.Islands.Any(i => i.Name.Contains(query, StringComparison.OrdinalIgnoreCase)) ||
                         p.Mainlands.Any(m => m.Name.Contains(query, StringComparison.OrdinalIgnoreCase)) ||
                         p.Oceans.Any(o => o.Name.Contains(query, StringComparison.OrdinalIgnoreCase)) ||
-                        p.satellites.Any(s => s.Name.Contains(query, StringComparison.OrdinalIgnoreCase))
-                    ).ToList();
+                        p.Satellites.Any(s => s.Name.Contains(query, StringComparison.OrdinalIgnoreCase))
+                    ).ToObservableCollection();
 
             _currentIndex = _planets.Count > 0 ? 0 : -1;
             UpdateCurrentPlanet();
@@ -130,22 +141,22 @@ namespace PlanetApp.ViewModels
             switch (_sortState)
             {
                 case 0:
-                    _planets = _planets.OrderBy(p => p.Name).ToList();
+                    _planets = _planets.OrderBy(p => p.Name).ToObservableCollection();
                     SortButtonSource = "reversedname.png";
                     _sortState = 1;
                     break;
                 case 1:
-                    _planets = _planets.OrderByDescending(p => p.Name).ToList();
+                    _planets = _planets.OrderByDescending(p => p.Name).ToObservableCollection();
                     SortButtonSource = "number.png";
                     _sortState = 2;
                     break;
                 case 2:
-                    _planets = _planets.OrderByDescending(p => p.Oceans.Count + p.Mainlands.Count + p.Islands.Count + p.satellites.Length).ToList();
+                    _planets = _planets.OrderByDescending(p => p.Oceans.Count + p.Mainlands.Count + p.Islands.Count + p.Satellites.Count).ToObservableCollection();
                     SortButtonSource = "reversednumber.png";
                     _sortState = 3;
                     break;
                 case 3:
-                    _planets = _planets.OrderBy(p => p.Oceans.Count + p.Mainlands.Count + p.Islands.Count + p.satellites.Length).ToList();
+                    _planets = _planets.OrderBy(p => p.Oceans.Count + p.Mainlands.Count + p.Islands.Count + p.Satellites.Count).ToObservableCollection();
                     SortButtonSource = "name.png";
                     _sortState = 0;
                     break;
@@ -165,7 +176,7 @@ namespace PlanetApp.ViewModels
                 "Вы уверены, что хотите удалить эту планету?",
                 "Удалить",
                 "Отмена");
-            
+
 
             if (!isConfirmed)
             {
@@ -185,7 +196,7 @@ namespace PlanetApp.ViewModels
             // Отправка сообщения для запуска анимации удаления
             MessagingCenter.Send(this, "DeletePlanet");
             await Task.Delay(2000);
-            
+
             //Обновление планеты
             UpdateCurrentPlanet();
 

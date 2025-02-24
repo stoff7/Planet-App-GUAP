@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text.Json; // Добавлено для работы с JSON
 using System;
 using PlanetLib;
+using System.Collections.ObjectModel;
 
 namespace PlanetApp
 {
@@ -26,16 +27,16 @@ namespace PlanetApp
 
         // Метод загрузки временных данных из файла temp.json
         private void LoadTempData()
-        {   
-                try
-                {
-                    string json = File.ReadAllText(_tempFilePath);
-                    tempData = JsonSerializer.Deserialize<TempData>(json) ?? new TempData(); // Десериализуем временные данные
-                }
-                catch (Exception ex)
-                {
-                    DisplayAlert("Ошибка", $"Не удалось загрузить временные данные: {ex.Message}", "OK");
-                }
+        {
+            try
+            {
+                string json = File.ReadAllText(_tempFilePath);
+                tempData = JsonSerializer.Deserialize<TempData>(json) ?? new TempData(); // Десериализуем временные данные
+            }
+            catch (Exception ex)
+            {
+                DisplayAlert("Ошибка", $"Не удалось загрузить временные данные: {ex.Message}", "OK");
+            }
         }
 
         // Метод сохранения временных данных в temp.json
@@ -134,49 +135,49 @@ namespace PlanetApp
                 {
                     Planet newPlanet = new Planet("NoName")
                     {
-                        Islands = tempData.Islands ?? new List<Island>(),
-                        Mainlands = tempData.Mainlands ?? new List<Mainland>(),
-                        Oceans = tempData.Oceans ?? new List<Ocean>()
+                        Islands = tempData.Islands ?? new ObservableCollection<Island>(),
+                        Mainlands = tempData.Mainlands ?? new ObservableCollection<Mainland>(),
+                        Oceans = tempData.Oceans ?? new ObservableCollection<Ocean>()
                     };
                     NewPlanet = newPlanet;
                 }
 
             }
-            else 
+            else
             {
                 int satelliteCount;
                 int.TryParse(SatelliteCountEntry.Text, out satelliteCount);
 
                 if (string.IsNullOrWhiteSpace(PlanetNameEntry.Text))
                 {
-                    Planet newPlanet = new Planet("NoName",satelliteCount);
+                    Planet newPlanet = new Planet("NoName", satelliteCount);
                     NewPlanet = newPlanet;
                 }
                 else
                 {
-                    Planet newPlanet = new Planet(PlanetNameEntry.Text,satelliteCount)
+                    Planet newPlanet = new Planet(PlanetNameEntry.Text, satelliteCount)
                     {
-                        Islands = new List<Island>(tempData.Islands),
-                        Mainlands = new List<Mainland>(tempData.Mainlands),
-                        Oceans = new List<Ocean>(tempData.Oceans) 
+                        Islands = new ObservableCollection<Island>(tempData.Islands),
+                        Mainlands = new ObservableCollection<Mainland>(tempData.Mainlands),
+                        Oceans = new ObservableCollection<Ocean>(tempData.Oceans)
                     };
                     NewPlanet = newPlanet;
                 }
             }
-            List<Planet> planets = new List<Planet>();
+            ObservableCollection<Planet> planets = new ObservableCollection<Planet>();
             planets = Planet.LoadPlanetsFromJson(_filePath);
 
-            if (planets.Exists(p => p.Name == PlanetNameEntry.Text))
+            if (planets.Any(p => p.Name == PlanetNameEntry.Text))
             {
                 await DisplayAlert("Ошибка", "Планета с таким именем уже существует.", "OK");
                 return;
             }
             planets.Add(NewPlanet);
 
-            Planet.SavePlanetsToJson(planets,_filePath);
+            Planet.SavePlanetsToJson(planets, _filePath);
 
             await DisplayAlert("Успех", $"Планета {PlanetNameEntry.Text} успешно сохранена.\n" +
-                $"Сохранено: {NewPlanet.satellites.Length} спутников, {NewPlanet.Islands.Count} островов, {NewPlanet.Mainlands.Count} материков, {NewPlanet.Oceans.Count} океанов.", "OK");
+                $"Сохранено: {NewPlanet.Satellites.Count} спутников, {NewPlanet.Islands.Count} островов, {NewPlanet.Mainlands.Count} материков, {NewPlanet.Oceans.Count} океанов.", "OK");
 
             ClearTempData(); // Очищаем временные данные после сохранения
         }

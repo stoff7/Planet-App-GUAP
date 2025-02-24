@@ -1,8 +1,4 @@
-using Microsoft.Maui.Controls;
 using PlanetLib;
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Text.Json;
 
 namespace PlanetApp
@@ -31,11 +27,11 @@ namespace PlanetApp
             string tempText = MainlandTempEntry.Text;
 
             // Валидация данных
-            if (string.IsNullOrWhiteSpace(name) || 
+            if (string.IsNullOrWhiteSpace(name) ||
                 !double.TryParse(areaText, out double area) ||
                 !double.TryParse(tempText, out double temperature))
             {
-                DisplayAlert("Ошибка","Пожалуйста, введите корректные данные.","OK");
+                DisplayAlert("Ошибка", "Пожалуйста, введите корректные данные.", "OK");
                 return;
             }
 
@@ -43,16 +39,16 @@ namespace PlanetApp
             Mainland newMainland = new Mainland(name, area, temperature);
 
             // Проверка на уникальность имени материка
-            if (tempData.Mainlands.Exists(m => m.Name == name))
+            if (tempData.Mainlands.Any(m => m.Name == name))
             {
-                DisplayAlert("Ошибка","Материк с таким именем уже существует","OK");
+                DisplayAlert("Ошибка", "Материк с таким именем уже существует", "OK");
                 return;
             }
 
             // Добавляем новый материк в объект TempData
             tempData.Mainlands.Add(newMainland);
 
-            DisplayAlert("Успех!",$"Материк {name} успешно создан.","OK");
+            DisplayAlert("Успех!", $"Материк {name} успешно создан.", "OK");
 
             // Очищаем поля ввода
             MainlandNameEntry.Text = string.Empty;

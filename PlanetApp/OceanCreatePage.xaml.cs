@@ -31,11 +31,11 @@ namespace PlanetApp
             string depthText = OceanDepthEntry.Text;
 
             // Валидация данных
-            if (string.IsNullOrWhiteSpace(name) || 
+            if (string.IsNullOrWhiteSpace(name) ||
                 !double.TryParse(areaText, out double area) ||
                 !double.TryParse(depthText, out double depth))
             {
-                DisplayAlert("Ошибка","Пожалуйста, введите корректные данные.","OK");
+                DisplayAlert("Ошибка", "Пожалуйста, введите корректные данные.", "OK");
                 return;
             }
 
@@ -43,16 +43,16 @@ namespace PlanetApp
             Ocean newOcean = new Ocean(name, area, depth);
 
             // Проверка на уникальность имени океана
-            if (tempData.Oceans.Exists(o => o.Name == name))
+            if (tempData.Oceans.Any(o => o.Name == name))
             {
-                DisplayAlert("Ошибка","Океан с таким именем уже существует","OK");
+                DisplayAlert("Ошибка", "Океан с таким именем уже существует", "OK");
                 return;
             }
 
             // Добавляем новый океан в объект TempData
             tempData.Oceans.Add(newOcean);
 
-            DisplayAlert("Успех!",$"Океан {name} успешно создан.","OK");
+            DisplayAlert("Успех!", $"Океан {name} успешно создан.", "OK");
 
 
             // Очищаем поля ввода

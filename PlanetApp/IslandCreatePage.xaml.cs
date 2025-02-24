@@ -46,11 +46,11 @@ namespace PlanetApp
             string tempText = IslandTempEntry.Text;
 
             // Валидация данных
-            if (string.IsNullOrWhiteSpace(name) || 
-                !double.TryParse(areaText, out double area) || 
+            if (string.IsNullOrWhiteSpace(name) ||
+                !double.TryParse(areaText, out double area) ||
                 !double.TryParse(tempText, out double temperature))
             {
-                DisplayAlert("Ошибка","Пожалуйста, введите корректные данные.","OK");
+                DisplayAlert("Ошибка", "Пожалуйста, введите корректные данные.", "OK");
                 return;
             }
 
@@ -58,16 +58,16 @@ namespace PlanetApp
             Island newIsland = new Island(name, area, temperature);
 
             // Проверка на уникальность имени острова
-            if (tempData.Islands.Exists(i => i.Name == name))
+            if (tempData.Islands.Any(i => i.Name == name))
             {
-                DisplayAlert("Ошибка","Остров с таким именем уже существует","OK");
+                DisplayAlert("Ошибка", "Остров с таким именем уже существует", "OK");
                 return;
             }
 
             // Добавляем новый остров в объект TempData
             tempData.Islands.Add(newIsland);
 
-            DisplayAlert("Успех!",$"Остров {name} успешно создан.","OK");
+            DisplayAlert("Успех!", $"Остров {name} успешно создан.", "OK");
 
             // Очищаем поля ввода
             IslandNameEntry.Text = string.Empty;
@@ -99,7 +99,7 @@ namespace PlanetApp
         private async void OnBackClicked(object sender, EventArgs e)
         {
             // Сохраняем временные данные перед возвратом на предыдущую страницу
-            SaveTempData(); 
+            SaveTempData();
             await Navigation.PopAsync(); // Возврат на предыдущую страницу
         }
     }

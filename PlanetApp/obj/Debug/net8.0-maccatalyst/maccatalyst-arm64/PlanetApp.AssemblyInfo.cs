@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PlanetApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+bbd9a482af5e20e09a02b02c485f8812da28b6c8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+92f63f98d07780c94517c28c5151624b14ad7579")]
 [assembly: System.Reflection.AssemblyProductAttribute("PlanetApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PlanetApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

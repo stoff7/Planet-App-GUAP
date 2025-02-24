@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-
 namespace PlanetApp;
 
 public static class MauiProgram

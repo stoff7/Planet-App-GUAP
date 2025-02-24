@@ -1,184 +1,339 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:PlanetApp.ViewModels"
              x:Class="PlanetApp.EditPlanet"
              Title="Редактировать Планету">
-    <!-- AbsoluteLayout для фона и содержимого -->
-    <AbsoluteLayout>
+       <!-- AbsoluteLayout для фона и содержимого -->
+       <AbsoluteLayout>
 
-        <!-- Фоновое изображение -->
-        <Image Source="bg.jpg" 
-               Aspect="AspectFill"
-               Opacity="0.7" 
-               AbsoluteLayout.LayoutFlags="All"
-               AbsoluteLayout.LayoutBounds="0,0,1,1" />
+              <!-- Фоновое изображение -->
+              <Image Source="bg.jpg"
+                     Aspect="AspectFill"
+                     Opacity="0.7"
+                     AbsoluteLayout.LayoutFlags="All"
+                     AbsoluteLayout.LayoutBounds="0,0,1,1"/>
 
-        <!-- Основное содержимое страницы -->
-        <ScrollView AbsoluteLayout.LayoutFlags="All"
-                    AbsoluteLayout.LayoutBounds="0,0,1,1">
-            <StackLayout Padding="10">
+              <!-- Основное содержимое страницы -->
+              <ScrollView AbsoluteLayout.LayoutFlags="All"
+                          AbsoluteLayout.LayoutBounds="0,0,1,1">
+                     <StackLayout Padding="10">
 
-                <!-- Крупная надпись - Название планеты -->
-                <Label Text="Название планеты" FontSize="70" HorizontalOptions="Center" />
+                            <!-- Крупная надпись - Название планеты -->
+                            <Label Text="Название планеты"
+                                   FontSize="70"
+                                   HorizontalOptions="Center"/>
 
-                <!-- Поле для ввода нового имени планеты -->
-                <Entry x:Name="PlanetNameEntry" Placeholder="Название планеты" FontSize="36" />
+                            <!-- Поле для ввода нового имени планеты -->
+                            <Entry Text="{Binding PlanetNameEntry}"
+                                   Placeholder="Название планеты"
+                                   FontSize="36"/>
 
-                <Label Text="" Margin="0,60,0,0" />
+                            <Label Text=""
+                                   Margin="0,60,0,0"/>
 
-                <!-- Заголовки для колонок: Острова, Материки, Океаны, Спутники -->
-                <Grid ColumnSpacing="20">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                            <!-- Заголовки для колонок: Острова, Материки, Океаны, Спутники -->
+                            <Grid ColumnSpacing="20">
+                                   <Grid.ColumnDefinitions>
+                                          <ColumnDefinition Width="*"/>
+                                          <ColumnDefinition Width="*"/>
+                                          <ColumnDefinition Width="*"/>
+                                          <ColumnDefinition Width="*"/>
+                                   </Grid.ColumnDefinitions>
 
-                    <!-- Заголовок для Островов -->
-                    <Label Text="Острова" FontSize="50" Grid.Column="0" HorizontalOptions="Center" />
-                    <!-- Заголовок для Материков -->
-                    <Label Text="Материки" FontSize="50" Grid.Column="1" HorizontalOptions="Center" />
-                    <!-- Заголовок для Океанов -->
-                    <Label Text="Океаны" FontSize="50" Grid.Column="2" HorizontalOptions="Center" />
-                    <!-- Заголовок для Спутников -->
-                    <Label Text="Спутники" FontSize="50" Grid.Column="3" HorizontalOptions="Center" />
-                </Grid>
+                                   <!-- Заголовок для Островов -->
+                                   <Label Text="Острова"
+                                          FontSize="50"
+                                          Grid.Column="0"
+                                          HorizontalOptions="Center"/>
+                                   <!-- Заголовок для Материков -->
+                                   <Label Text="Материки"
+                                          FontSize="50"
+                                          Grid.Column="1"
+                                          HorizontalOptions="Center"/>
+                                   <!-- Заголовок для Океанов -->
+                                   <Label Text="Океаны"
+                                          FontSize="50"
+                                          Grid.Column="2"
+                                          HorizontalOptions="Center"/>
+                                   <!-- Заголовок для Спутников -->
+                                   <Label Text="Спутники"
+                                          FontSize="50"
+                                          Grid.Column="3"
+                                          HorizontalOptions="Center"/>
+                            </Grid>
 
-                <!-- Отступ с использованием Margin -->
-                <Label Text="" Margin="0,10,0,0" />
+                            <!-- Отступ с использованием Margin -->
+                            <Label Text=""
+                                   Margin="0,10,0,0"/>
 
-                <!-- CollectionView для островов, материков, океанов и спутников -->
-                <Grid ColumnSpacing="20">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                            <!-- CollectionView для островов, материков, океанов и спутников -->
+                            <Grid ColumnSpacing="20">
+                                   <Grid.ColumnDefinitions>
+                                          <ColumnDefinition Width="*"/>
+                                          <ColumnDefinition Width="*"/>
+                                          <ColumnDefinition Width="*"/>
+                                          <ColumnDefinition Width="*"/>
+                                   </Grid.ColumnDefinitions>
 
-                    <!-- Острова -->
-                    <CollectionView x:Name="IslandCollectionView" Grid.Column="0" SelectionMode="Single" SelectionChanged="OnIslandSelected">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Frame BorderColor="Black" CornerRadius="5" Padding="10" Opacity="0.5">
-                                    <Grid>
-                                        <Label Text="{Binding Name}" FontSize="45" />
-                                    </Grid>
-                                </Frame>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                    
+                                   <!-- Острова -->
+                                   <CollectionView Grid.Column="0"
+                                                   ItemsSource="{Binding Islands}"
+                                                   SelectionMode="Single"
+                                                   SelectedItem="{Binding SelectedIsland,Mode=TwoWay}"
+                                                   SelectionChangedCommand="{Binding OnIslandSelectedCommand}">
 
-
-                    <!-- Материки -->
-                    <CollectionView x:Name="MainlandCollectionView" Grid.Column="1" SelectionMode="Single" SelectionChanged="OnMainlandSelected">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Frame BorderColor="Black" CornerRadius="5" Padding="10" Opacity="0.5">
-                                    <Grid>
-                                        <Label Text="{Binding Name}" FontSize="45" />
-                                    </Grid>
-                                </Frame>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-
-
-
-                    <!-- Океаны -->
-                    <CollectionView x:Name="OceanCollectionView" Grid.Column="2" SelectionMode="Single" SelectionChanged="OnOceanSelected">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Frame BorderColor="Black" CornerRadius="5" Padding="10" Opacity="0.5">
-                                    <Grid>
-                                        <Label Text="{Binding Name}" FontSize="45" />
-                                    </Grid>
-                                </Frame>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                    
+                                          <CollectionView.ItemTemplate>
+                                                 <DataTemplate>
+                                                        <Frame BorderColor="Black"
+                                                               CornerRadius="5"
+                                                               Padding="10"
+                                                               Opacity="0.5">
+                                                               <Grid>
+                                                                      <Label Text="{Binding Name}"
+                                                                             FontSize="45"/>
+                                                               </Grid>
+                                                        </Frame>
+                                                 </DataTemplate>
+                                          </CollectionView.ItemTemplate>
+                                   </CollectionView>
 
 
-                    <!-- Спутники -->
-                    <CollectionView x:Name="SatelliteCollectionView" Grid.Column="3" SelectionMode="Single" SelectionChanged="OnSatelliteSelected">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Frame BorderColor="Black" CornerRadius="5" Padding="10" Opacity="0.5">
-                                    <Grid>
-                                        <Label Text="{Binding Name}" FontSize="45" />
-                                    </Grid>
-                                </Frame>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </Grid>
 
-                <Label Text="" Margin="0,50,0,0" />
+                                   <!-- Материки -->
+                                   <CollectionView ItemsSource="{Binding Mainlands}"
+                                                   Grid.Column="1"
+                                                   SelectionMode="Single"
+                                                   SelectedItem="{Binding SelectedMainland,Mode=TwoWay}"
+                                                   SelectionChangedCommand="{Binding OnMainlandSelectedCommand}">
+                                          <CollectionView.ItemTemplate>
+                                                 <DataTemplate>
+                                                        <Frame BorderColor="Black"
+                                                               CornerRadius="5"
+                                                               Padding="10"
+                                                               Opacity="0.5">
+                                                               <Grid>
+                                                                      <Label Text="{Binding Name}"
+                                                                             FontSize="45"/>
+                                                               </Grid>
+                                                        </Frame>
+                                                 </DataTemplate>
+                                          </CollectionView.ItemTemplate>
+                                   </CollectionView>
 
-                <!-- Поля для ввода данных -->
-                <Grid ColumnSpacing="20" VerticalOptions="StartAndExpand">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
 
-                    <!-- Острова (поля) -->
-                    <StackLayout Grid.Column="0">
-                        <Entry x:Name="IslandNameEntry" Placeholder="Название острова" FontSize="24" HeightRequest="60" Margin="0,10,0,0"/>
-                        <Entry x:Name="IslandAreaEntry" Placeholder="Площадь острова" Keyboard="Numeric" FontSize="24" HeightRequest="60" Margin="0,10,0,0"/>
-                        <Entry x:Name="IslandTemperatureEntry" Placeholder="Температура острова" Keyboard="Numeric" FontSize="24" HeightRequest="60" Margin="0,10,0,0"/>
-                        <ImageButton Margin="0,20" Source="delete.png" ClassId="Island" Clicked="OnDeleteClicked" 
-                     WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="End"/>
-                     <ImageButton Margin="10" Source="add.png" ClassId="Satellite" Clicked="OnAddIslandClicked" 
-                        WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="End"/>
-                    </StackLayout>
 
-                    
+                                   <!-- Океаны -->
+                                   <CollectionView ItemsSource="{Binding Oceans}"
+                                                   Grid.Column="2"
+                                                   SelectionMode="Single"
+                                                   SelectedItem="{Binding SelectedOcean,Mode=TwoWay}"
+                                                   SelectionChangedCommand="{Binding OnOceanSelectedCommand}">
+                                          <CollectionView.ItemTemplate>
+                                                 <DataTemplate>
+                                                        <Frame BorderColor="Black"
+                                                               CornerRadius="5"
+                                                               Padding="10"
+                                                               Opacity="0.5">
+                                                               <Grid>
+                                                                      <Label Text="{Binding Name}"
+                                                                             FontSize="45"/>
+                                                               </Grid>
+                                                        </Frame>
+                                                 </DataTemplate>
+                                          </CollectionView.ItemTemplate>
+                                   </CollectionView>
 
-                    <!-- Материки (поля) -->
-                    <StackLayout Grid.Column="1">
-                        <Entry x:Name="MainlandNameEntry" Placeholder="Название материка" FontSize="24" HeightRequest="60" Margin="0,10,0,0"/>
-                        <Entry x:Name="MainlandAreaEntry" Placeholder="Площадь материка" Keyboard="Numeric" FontSize="24" HeightRequest="60" Margin="0,10,0,0"/>
-                        <Entry x:Name="MainlandTemperatureEntry" Placeholder="Температура материка" Keyboard="Numeric" FontSize="24" HeightRequest="60" Margin="0,10,0,0"/>
-                        <ImageButton Margin="0,20" Source="delete.png" ClassId="Mainland" Clicked="OnDeleteClicked" 
-                     WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="End"/>
-                     <ImageButton Margin="10" Source="add.png" ClassId="Satellite" Clicked="OnAddMainLandClicked" 
-                        WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="End"/>
-                    </StackLayout>
-                    
 
-                    <!-- Океаны (поля) -->
-                    <StackLayout Grid.Column="2">
-                        <Entry x:Name="OceanNameEntry" Placeholder="Название океана" FontSize="24" HeightRequest="60" Margin="0,10,0,0"/>
-                        <Entry x:Name="OceanAreaEntry" Placeholder="Площадь океана" Keyboard="Numeric" FontSize="24" HeightRequest="60" Margin="0,10,0,0"/>
-                        <Entry x:Name="OceanTemperatureEntry" Placeholder="Температура океана" Keyboard="Numeric" FontSize="24" HeightRequest="60" Margin="0,10,0,0"/>
-                        <ImageButton Margin="0,20" Source="delete.png" ClassId="Ocean" Clicked="OnDeleteClicked" 
-                     WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="End" />
-                     <ImageButton Margin="10" Source="add.png" ClassId="Satellite" Clicked="OnAddOceanClicked" 
-                        WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="End"/>
-                    </StackLayout>
-                    
 
-                    <!-- Спутники (поля) -->
-                    <StackLayout Grid.Column="3">
-                        <Entry x:Name="SatelliteNameEntry" Placeholder="Название спутника" FontSize="24" HeightRequest="60" Margin="0,10,0,0"/>
-                        <Entry x:Name="SatelliteMassEntry" Placeholder="Масса спутника" Keyboard="Numeric" FontSize="24" HeightRequest="60" Margin="0,10,0,0"/>
-                        <ImageButton Margin="0,85" Source="delete.png" ClassId="Satellite" Clicked="OnDeleteClicked" 
-                         WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="End"/>
-                        <ImageButton Margin="10" Source="add.png" ClassId="Satellite" Clicked="OnAddSatelliteClicked" 
-                        WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="End"/>
-                    </StackLayout>
-                    
-                </Grid>
+                                   <!-- Спутники -->
+                                   <CollectionView ItemsSource="{Binding Satellites}"
+                                                   Grid.Column="3"
+                                                   SelectionMode="Single"
+                                                   SelectedItem="{Binding SelectedSatellite,Mode=TwoWay}"
+                                                   SelectionChangedCommand="{Binding OnSatelliteSelectedCommand}">
+                                          <CollectionView.ItemTemplate>
+                                                 <DataTemplate>
+                                                        <Frame BorderColor="Black"
+                                                               CornerRadius="5"
+                                                               Padding="10"
+                                                               Opacity="0.5">
+                                                               <Grid>
+                                                                      <Label Text="{Binding Name}"
+                                                                             FontSize="45"/>
+                                                               </Grid>
+                                                        </Frame>
+                                                 </DataTemplate>
+                                          </CollectionView.ItemTemplate>
+                                   </CollectionView>
+                            </Grid>
 
-                <!-- Кнопка сохранения -->
-                <Button Text="Сохранить" Clicked="OnSaveClicked" HorizontalOptions="Center" Margin="0,20,0,0" />
+                            <Label Text=""
+                                   Margin="0,50,0,0"/>
 
-            </StackLayout>
-        </ScrollView>
-    </AbsoluteLayout>
+                            <!-- Поля для ввода данных -->
+                            <Grid ColumnSpacing="20"
+                                  VerticalOptions="StartAndExpand">
+                                   <Grid.ColumnDefinitions>
+                                          <ColumnDefinition Width="*"/>
+                                          <ColumnDefinition Width="*"/>
+                                          <ColumnDefinition Width="*"/>
+                                          <ColumnDefinition Width="*"/>
+                                   </Grid.ColumnDefinitions>
+
+                                   <!-- Острова (поля) -->
+                                   <StackLayout Grid.Column="0">
+                                          <Entry Text="{Binding IslandNameEntry,Mode=TwoWay}"
+                                                 Placeholder="Название острова"
+                                                 FontSize="24"
+                                                 HeightRequest="60"
+                                                 Margin="0,10,0,0"/>
+                                          <Entry Text="{Binding IslandAreaEntry,Mode=TwoWay}"
+                                                 Placeholder="Площадь острова"
+                                                 Keyboard="Numeric"
+                                                 FontSize="24"
+                                                 HeightRequest="60"
+                                                 Margin="0,10,0,0"/>
+                                          <Entry Text="{Binding IslandTemperatureEntry,Mode=TwoWay}"
+                                                 Placeholder="Температура острова"
+                                                 Keyboard="Numeric"
+                                                 FontSize="24"
+                                                 HeightRequest="60"
+                                                 Margin="0,10,0,0"/>
+                                          <ImageButton Margin="0,20"
+                                                       Source="delete.png"
+                                                       CommandParameter="Island"
+                                                       Command="{Binding DeleteCommand}"
+                                                       WidthRequest="50"
+                                                       HeightRequest="50"
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="End"/>
+                                          <ImageButton Margin="10"
+                                                       Source="add.png"
+                                                       CommandParameter="Island"
+                                                       Command="{Binding AddIslandCommand}"
+                                                       WidthRequest="50"
+                                                       HeightRequest="50"
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="End"/>
+                                   </StackLayout>
+
+
+
+                                   <!-- Материки (поля) -->
+                                   <StackLayout Grid.Column="1">
+                                          <Entry Text="{Binding MainlandNameEntry,Mode=TwoWay}"
+                                                 Placeholder="Название материка"
+                                                 FontSize="24"
+                                                 HeightRequest="60"
+                                                 Margin="0,10,0,0"/>
+                                          <Entry Text="{Binding MainlandAreaEntry,Mode=TwoWay}"
+                                                 Placeholder="Площадь материка"
+                                                 Keyboard="Numeric"
+                                                 FontSize="24"
+                                                 HeightRequest="60"
+                                                 Margin="0,10,0,0"/>
+                                          <Entry Text="{Binding MainlandTemperatureEntry,Mode=TwoWay}"
+                                                 Placeholder="Температура материка"
+                                                 Keyboard="Numeric"
+                                                 FontSize="24"
+                                                 HeightRequest="60"
+                                                 Margin="0,10,0,0"/>
+                                          <ImageButton Margin="0,20"
+                                                       Source="delete.png"
+                                                       CommandParameter="Mainland"
+                                                       Command="{Binding DeleteCommand}"
+                                                       WidthRequest="50"
+                                                       HeightRequest="50"
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="End"/>
+                                          <ImageButton Margin="10"
+                                                       Source="add.png"
+                                                       ClassId="Satellite"
+                                                       Command="{Binding AddMainlandCommand}"
+                                                       WidthRequest="50"
+                                                       HeightRequest="50"
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="End"/>
+                                   </StackLayout>
+
+
+                                   <!-- Океаны (поля) -->
+                                   <StackLayout Grid.Column="2">
+                                          <Entry Text="{Binding OceanNameEntry,Mode=TwoWay}"
+                                                 Placeholder="Название океана"
+                                                 FontSize="24"
+                                                 HeightRequest="60"
+                                                 Margin="0,10,0,0"/>
+                                          <Entry Text="{Binding OceanAreaEntry,Mode=TwoWay}"
+                                                 Placeholder="Площадь океана"
+                                                 Keyboard="Numeric"
+                                                 FontSize="24"
+                                                 HeightRequest="60"
+                                                 Margin="0,10,0,0"/>
+                                          <Entry Text="{Binding OceanTemperatureEntry,Mode=TwoWay}"
+                                                 Placeholder="Температура океана"
+                                                 Keyboard="Numeric"
+                                                 FontSize="24"
+                                                 HeightRequest="60"
+                                                 Margin="0,10,0,0"/>
+                                          <ImageButton Margin="0,20"
+                                                       Source="delete.png"
+                                                       CommandParameter="Ocean"
+                                                       Command="{Binding DeleteCommand}"
+                                                       WidthRequest="50"
+                                                       HeightRequest="50"
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="End"/>
+                                          <ImageButton Margin="10"
+                                                       Source="add.png"
+                                                       CommandParameter="Ocean"
+                                                       Command="{Binding AddOceanCommand}"
+                                                       WidthRequest="50"
+                                                       HeightRequest="50"
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="End"/>
+                                   </StackLayout>
+
+
+                                   <!-- Спутники (поля) -->
+                                   <StackLayout Grid.Column="3">
+                                          <Entry Text="{Binding SatelliteNameEntry,Mode=TwoWay}"
+                                                 Placeholder="Название спутника"
+                                                 FontSize="24"
+                                                 HeightRequest="60"
+                                                 Margin="0,10,0,0"/>
+                                          <Entry Text="{Binding SatelliteMassEntry,Mode=TwoWay}"
+                                                 Placeholder="Масса спутника"
+                                                 Keyboard="Numeric"
+                                                 FontSize="24"
+                                                 HeightRequest="60"
+                                                 Margin="0,10,0,0"/>
+                                          <ImageButton Margin="0,85"
+                                                       Source="delete.png"
+                                                       CommandParameter="Satellite"
+                                                       Command="{Binding DeleteCommand}"
+                                                       WidthRequest="50"
+                                                       HeightRequest="50"
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="End"/>
+                                          <ImageButton Margin="10"
+                                                       Source="add.png"
+                                                       Command="{Binding AddSatelliteCommand}"
+                                                       WidthRequest="50"
+                                                       HeightRequest="50"
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="End"/>
+                                   </StackLayout>
+
+                            </Grid>
+
+                            <!-- Кнопка сохранения -->
+                            <Button Text="Сохранить"
+                                    Command="{Binding SaveCommand}"
+                                    HorizontalOptions="Center"
+                                    Margin="0,20,0,0"/>
+
+                     </StackLayout>
+              </ScrollView>
+       </AbsoluteLayout>
 </ContentPage>
