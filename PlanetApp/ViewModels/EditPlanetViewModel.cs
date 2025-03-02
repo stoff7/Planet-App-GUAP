@@ -4,12 +4,11 @@ using System.Runtime.CompilerServices;
 using System.ComponentModel;
 using PlanetApp.Services;
 using System.Collections.ObjectModel;
+using System.Runtime.Intrinsics.X86;
 namespace PlanetApp.ViewModels
 {
     public class EditPlanetViewModel : BindableObject, INotifyPropertyChanged
     {
-
-
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             base.OnPropertyChanged(propertyName);
@@ -312,21 +311,20 @@ namespace PlanetApp.ViewModels
             IslandNameEntry = string.Empty;
             IslandAreaEntry = string.Empty;
             IslandTemperatureEntry = string.Empty;
-            SelectedIsland = null;
 
             MainlandNameEntry = string.Empty;
             MainlandAreaEntry = string.Empty;
             MainlandTemperatureEntry = string.Empty;
-            SelectedMainland = null;
+
 
             OceanNameEntry = string.Empty;
             OceanAreaEntry = string.Empty;
             OceanTemperatureEntry = string.Empty;
-            SelectedOcean = null;
+
 
             SatelliteNameEntry = string.Empty;
             SatelliteMassEntry = string.Empty;
-            SelectedSatellite = null;
+
         }
 
         private void OnIsland(SelectionChangedEventArgs e)
@@ -335,9 +333,11 @@ namespace PlanetApp.ViewModels
             IslandNameEntry = selectedIsland.Name;
             IslandAreaEntry = selectedIsland.Area.ToString();
             IslandTemperatureEntry = selectedIsland.AverageTemperature.ToString();
+
         }
         private void OnOcean(SelectionChangedEventArgs e)
         {
+            ClearFields();
             var selectedOcean = SelectedOcean;
             OceanNameEntry = selectedOcean.Name;
             OceanAreaEntry = selectedOcean.Area.ToString();
@@ -345,7 +345,6 @@ namespace PlanetApp.ViewModels
 
         }
 
-        // Метод для выбора материка
         private void OnMainland(SelectionChangedEventArgs e)
         {
             var selectedMainland = SelectedMainland;
@@ -441,6 +440,11 @@ namespace PlanetApp.ViewModels
 
         private async void OnDeleteItem(string itemType)
         {
+            if (SelectedIsland == null && SelectedSatellite == null && SelectedOcean == null && SelectedMainland == null)
+            {
+                await Application.Current.MainPage.DisplayAlert("Не выбран предмет для удаления", "Неудача!", "OK");
+                return;
+            }
             switch (itemType)
             {
                 case "Island":
@@ -448,7 +452,9 @@ namespace PlanetApp.ViewModels
                     {
                         Islands.Remove(SelectedIsland);
                         _planet.Islands = Islands;
+                        await Application.Current.MainPage.DisplayAlert("Остров удален", "Успех!", "OK");
                     }
+
                     break;
 
                 case "Mainland":
@@ -456,6 +462,7 @@ namespace PlanetApp.ViewModels
                     {
                         Mainlands.Remove(SelectedMainland);
                         _planet.Mainlands = Mainlands;
+                        await Application.Current.MainPage.DisplayAlert("Материк удален", "Успех!", "OK");
                     }
 
                     break;
@@ -465,6 +472,8 @@ namespace PlanetApp.ViewModels
                     {
                         Oceans.Remove(SelectedOcean);
                         _planet.Oceans = Oceans;
+                        await Application.Current.MainPage.DisplayAlert("Океан удален", "Успех!", "OK");
+
                     }
                     break;
 
@@ -473,10 +482,11 @@ namespace PlanetApp.ViewModels
                     {
                         Satellites.Remove(SelectedSatellite);
                         _planet.Satellites = Satellites;
+                        await Application.Current.MainPage.DisplayAlert("Спутник удален", "Успех!", "OK");
                     }
                     break;
             }
-            await Application.Current.MainPage.DisplayAlert("Победа", "Успех!", "OK");
+
 
             // Уведомляем UI об изменениях коллекций (если требуется)
             ClearFields();
@@ -484,7 +494,6 @@ namespace PlanetApp.ViewModels
             OnPropertyChanged(nameof(Mainlands));
             OnPropertyChanged(nameof(Oceans));
             OnPropertyChanged(nameof(Satellites));
-
         }
 
         private async Task OnAddSatellite()

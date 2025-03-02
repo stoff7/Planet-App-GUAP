@@ -22,7 +22,7 @@ public static class CollectionExtensions
 // Главный класс Planet
 public class Planet : IRandomDataGenerator, INotifyPropertyChanged
 {
-    public ObservableCollection<Satellite> Satellites { get; set; }
+
     public delegate void PlanetCreatedHandler(string message);
     public delegate void PlanetSavedHandler(bool success);
     public delegate void PlanetLoadedHandler(bool success);
@@ -56,6 +56,7 @@ public class Planet : IRandomDataGenerator, INotifyPropertyChanged
     public ObservableCollection<Ocean> Oceans { get; set; }
     public ObservableCollection<Mainland> Mainlands { get; set; }
     public ObservableCollection<Island> Islands { get; set; }
+    public ObservableCollection<Satellite> Satellites { get; set; }
     public override bool Equals(object obj)
     {
         if (obj is Planet otherPlanet)
