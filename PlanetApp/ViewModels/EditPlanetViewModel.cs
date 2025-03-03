@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 using System.ComponentModel;
 using PlanetApp.Services;
 using System.Collections.ObjectModel;
-using System.Runtime.Intrinsics.X86;
 namespace PlanetApp.ViewModels
 {
     public class EditPlanetViewModel : BindableObject, INotifyPropertyChanged

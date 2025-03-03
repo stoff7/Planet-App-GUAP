@@ -350,6 +350,7 @@
 /Users/staslisicin/Desktop/Labs/ОП/PlanetApp/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/Microsoft.Win32.Registry.stamp
 /Users/staslisicin/Desktop/Labs/ОП/PlanetApp/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/mscorlib.stamp
 /Users/staslisicin/Desktop/Labs/ОП/PlanetApp/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/netstandard.stamp
+/Users/staslisicin/Desktop/Labs/ОП/PlanetApp/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/PlanetLib.stamp
 /Users/staslisicin/Desktop/Labs/ОП/PlanetApp/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/System.AppContext.stamp
 /Users/staslisicin/Desktop/Labs/ОП/PlanetApp/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/System.Buffers.stamp
 /Users/staslisicin/Desktop/Labs/ОП/PlanetApp/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/System.Collections.Concurrent.stamp
