@@ -72,5 +72,11 @@
 	  <ProjectReference Include="..\PlanetLib\PlanetLib.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="CreatePlanetPart.xaml.cs">
+	    <DependentUpon>CreatePlanetPart.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
 
 </Project>

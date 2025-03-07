@@ -162,21 +162,7 @@ namespace PlanetApp.ViewModels
             // Сначала сохраняем временные данные в файл
             SaveTempData();
 
-
-            // Переход на нужную страницу с передачей параметров через Shell
-            switch (destination)
-            {
-                case "Island":
-                    await Application.Current.MainPage.Navigation.PushAsync(new IslandCreatePage(_tempData));
-                    break;
-                case "Mainland":
-                    await Application.Current.MainPage.Navigation.PushAsync(new MainlandCreatePage(_tempData));
-                    break;
-                case "Ocean":
-                    await Application.Current.MainPage.Navigation.PushAsync(new OceanCreatePage(_tempData));
-                    break;
-
-            }
+            await Application.Current.MainPage.Navigation.PushAsync(new CreatePlanetPart(_tempData, destination));
         }
 
     }

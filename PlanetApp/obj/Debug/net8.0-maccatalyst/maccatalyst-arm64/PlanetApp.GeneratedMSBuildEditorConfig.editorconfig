@@ -34,35 +34,23 @@ build_metadata.AdditionalFiles.ManifestResourceName = PlanetApp.CreatePlanet.xam
 build_metadata.AdditionalFiles.TargetPath = CreatePlanet.xaml
 build_metadata.AdditionalFiles.RelativePath = CreatePlanet.xaml
 
+[/Users/staslisicin/Desktop/Labs/ОП/PlanetApp/CreatePlanetPart.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = PlanetApp.CreatePlanetPart.xaml
+build_metadata.AdditionalFiles.TargetPath = CreatePlanetPart.xaml
+build_metadata.AdditionalFiles.RelativePath = CreatePlanetPart.xaml
+
 [/Users/staslisicin/Desktop/Labs/ОП/PlanetApp/EditPlanet.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = PlanetApp.EditPlanet.xaml
 build_metadata.AdditionalFiles.TargetPath = EditPlanet.xaml
 build_metadata.AdditionalFiles.RelativePath = EditPlanet.xaml
 
-[/Users/staslisicin/Desktop/Labs/ОП/PlanetApp/IslandCreatePage.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = PlanetApp.IslandCreatePage.xaml
-build_metadata.AdditionalFiles.TargetPath = IslandCreatePage.xaml
-build_metadata.AdditionalFiles.RelativePath = IslandCreatePage.xaml
-
-[/Users/staslisicin/Desktop/Labs/ОП/PlanetApp/MainlandCreatePage.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = PlanetApp.MainlandCreatePage.xaml
-build_metadata.AdditionalFiles.TargetPath = MainlandCreatePage.xaml
-build_metadata.AdditionalFiles.RelativePath = MainlandCreatePage.xaml
-
 [/Users/staslisicin/Desktop/Labs/ОП/PlanetApp/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = PlanetApp.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
-
-[/Users/staslisicin/Desktop/Labs/ОП/PlanetApp/OceanCreatePage.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = PlanetApp.OceanCreatePage.xaml
-build_metadata.AdditionalFiles.TargetPath = OceanCreatePage.xaml
-build_metadata.AdditionalFiles.RelativePath = OceanCreatePage.xaml
 
 [/Users/staslisicin/Desktop/Labs/ОП/PlanetApp/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml

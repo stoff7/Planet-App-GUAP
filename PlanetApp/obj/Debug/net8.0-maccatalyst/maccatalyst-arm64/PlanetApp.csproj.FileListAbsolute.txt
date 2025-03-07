@@ -327,4 +327,3 @@
 /Users/staslisicin/Desktop/Labs/ОП/PlanetApp/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/PlanetApp.csproj.Up2Date
 /Users/staslisicin/Desktop/Labs/ОП/PlanetApp/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/PlanetApp.genruntimeconfig.cache
 /Users/staslisicin/Desktop/Labs/ОП/PlanetApp/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/ref/PlanetApp.dll
-/Users/staslisicin/Desktop/Labs/ОП/PlanetApp/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/PlanetLib.stamp
